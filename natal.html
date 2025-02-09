@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Undangan Natal</title>
+    <link href="Christmas-Tree-Icon_47136.png" rel="icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap");
+
+      body {
+        background-color: #1e90ff; /* Biru yang cerah dan elegan */
+        text-align: center;
+        color: black;
+        font-family: "Roboto", Arial, sans-serif;
+        position: relative;
+        margin: 0;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      /* Decorations - Christmas Icons */
+      .decoration {
+        position: absolute;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .tree {
+        top: 10%;
+        left: 5%;
+        font-size: 4rem;
+        color: green;
+        animation: swing 3s ease-in-out infinite;
+      }
+
+      .star {
+        top: 5%;
+        right: 5%;
+        font-size: 3rem;
+        color: gold;
+        animation: twinkle 2s infinite;
+      }
+
+      .gift {
+        bottom: 10%;
+        left: 25%;
+        font-size: 3rem;
+        color: red;
+        animation: float 5s ease-in-out infinite, rotate 3s linear infinite;
+      }
+
+      .santa {
+        bottom: 15%;
+        right: 15%;
+        font-size: 3rem;
+        color: red;
+        animation: fly 6s linear infinite;
+      }
+
+      .snowflake {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: white;
+        opacity: 0.8;
+        border-radius: 50%;
+        animation: snowfall 5s linear infinite;
+      }
+
+      /* Animations */
+      @keyframes swing {
+        0%,
+        100% {
+          transform: rotate(-10deg);
+        }
+        50% {
+          transform: rotate(10deg);
+        }
+      }
+
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(-15px);
+        }
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes fly {
+        0% {
+          transform: translateX(100px);
+        }
+        100% {
+          transform: translateX(-150vw);
+        }
+      }
+
+      @keyframes snowfall {
+        0% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh);
+          opacity: 0;
+        }
+      }
+
+      /* Envelope Styling */
+      .envelope {
+        width: 370px;
+        height: 200px;
+        background: #b22222;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: transform 0.5s ease-in-out;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        font-size: 20px;
+        font-weight: bold;
+        color: white;
+        text-shadow: 2px 2px 5px black;
+        animation: openEnvelope 1s forwards;
+      }
+
+      @keyframes openEnvelope {
+        0% {
+          transform: translate(-50%, -50%) scale(0);
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+
+      /* Letter Styling */
+      .letter {
+        width: 350px;
+        height: 250px;
+        background: #fff7e6;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        padding: 20px;
+        opacity: 0;
+        transition: transform 0.5s ease-in-out, opacity 0.5s;
+      }
+
+      .letter.show {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+
+      h1 {
+        color: rgb(255, 69, 0); /* Oranye cerah untuk menonjolkan teks */
+        text-shadow: 2px 2px 15px rgba(255, 140, 0, 0.8); /* Bayangan lembut dan terang */
+      }
+
+      .btn {
+        padding: 10px 20px;
+        font-size: 18px;
+        margin-top: 20px;
+        background-color: red;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .btn:hover {
+        background-color: darkred;
+        transform: scale(1.1);
+      }
+
+      /* Snowflakes */
+      .snowflake {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: white;
+        opacity: 0.8;
+        border-radius: 50%;
+        animation: snowfall 5s linear infinite;
+      }
+
+      .audio-control {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: rgba(255, 0, 0, 0.8);
+        padding: 15px;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .audio-control i {
+        font-size: 24px;
+        color: white;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .envelope {
+          width: 250px;
+          height: 180px;
+        }
+
+        .letter {
+          width: 280px;
+          height: 200px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="decoration tree">🎄</div>
+    <div class="decoration star">⭐</div>
+    <div class="decoration gift">🎁</div>
+    <div class="decoration santa">🎅</div>
+    <div class="envelope" onclick="openLetter()">
+      🎄 Klik untuk Membuka Undangan 🎄
+    </div>
+    <div class="letter">
+      <h1>Selamat Natal!</h1>
+      <p>Anda diundang untuk merayakan Natal bersama kami</p>
+      <p><strong>24 Desember 2024</strong></p>
+      <p><strong>Tempat: Gereja Infokom</strong></p>
+      <button class="btn" onclick="showDetails()">Detail Acara</button>
+      <p id="details" style="display: none">
+        Acara dimulai pukul 18:00 WIB dengan kebaktian, diikuti dengan perayaan
+        dan jamuan makan.
+      </p>
+    </div>
+
+    <audio id="christmasAudio" loop>
+      <source src="lagu.mp3" type="audio/mpeg" />
+    </audio>
+
+    <div class="audio-control" onclick="toggleAudio()">
+      <i id="audioIcon" class="fa-solid fa-play"></i>
+    </div>
+
+    <script>
+      function openLetter() {
+        document.querySelector(".envelope").classList.add("open");
+        document.querySelector(".letter").classList.add("show");
+        createSnowflakes();
+      }
+
+      function showDetails() {
+        const details = document.getElementById("details");
+        if (details.style.display === "none") {
+          details.style.display = "block";
+          document.querySelector(".letter").style.height = "auto";
+        } else {
+          details.style.display = "none";
+          document.querySelector(".letter").style.height = "250px";
+        }
+      }
+
+      function createSnowflakes() {
+        for (let i = 0; i < 50; i++) {
+          let snowflake = document.createElement("div");
+          snowflake.classList.add("snowflake");
+          snowflake.style.left = Math.random() * 100 + "vw";
+          snowflake.style.animationDuration = Math.random() * 3 + 2 + "s";
+          snowflake.style.animationDelay = Math.random() * 5 + "s";
+          document.body.appendChild(snowflake);
+        }
+      }
+
+      function toggleAudio() {
+        const audio = document.getElementById("christmasAudio");
+        const icon = document.getElementById("audioIcon");
+
+        if (audio.paused) {
+          audio.play();
+          icon.classList.remove("fa-play");
+          icon.classList.add("fa-pause");
+        } else {
+          audio.pause();
+          icon.classList.remove("fa-pause");
+          icon.classList.add("fa-play");
+        }
+      }
+    </script>
+  </body>
+</html>
